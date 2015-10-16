@@ -116,7 +116,7 @@ Also it doesn't use any storage engines and doesn't send notifications.
 
 Just run go get:
 
-    go get github.com/divan/expvarmon
+    go get github.com/zgramana/expvarmon
 
 ## Usage
 
@@ -170,7 +170,7 @@ If you need to monitor more (or less) vars, you can specify them with -vars comm
 		./expvarmon -ports="80,remoteapp:80" -vars="mem:memstats.Alloc,duration:Response.Mean,Counter"
 		./expvarmon -ports="1234-1236" -vars="Goroutines" -self
 
-	For more details and docs, see README: http://github.com/divan/expvarmon
+	For more details and docs, see README: http://github.com/zgramana/expvarmon
 
 So, yes, you can specify multiple ports, using '-' for ranges, and specify fully-qualified URLs for remote apps.
 
