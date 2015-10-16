@@ -1,6 +1,75 @@
-# ExpvarMon
+# Sync Gateway Usage Guide
+Monitoring memory stats:
+```sh
+./expvarmon -ports="4985" -vars="mem:memstats.Alloc,mem:memstats.Sys,mem:memstats.HeapAlloc,mem:memstats.HeapInuse,memstats.NumGC,memstats.PauseTotalNs,memstats.PauseNs"
+```
+Monitoring CBS get ops:
+```sh
+./expvarmon -ports="4985" -vars="cb.ops.GetsRaw.count,cb.ops.GetsRaw.p99,cb.ops.GetsRaw.p95,cb.ops.GetsRaw.p90,cb.ops.GetsRaw.p75,cb.ops.GetsRaw.p50,cb.ops.GetsRaw.p25"
+```
 
-[![Build Status](https://drone.io/github.com/divan/expvarmon/status.png)](https://drone.io/github.com/divan/expvarmon/latest)
+Monitoring CBS incr ops:
+```sh
+./expvarmon -ports="4985" -vars="cb.ops.Incr.count,cb.ops.Incr.p99,cb.ops.Incr.p95,cb.ops.Incr.p90,cb.ops.Incr.p75,cb.ops.Incr.p50,cb.ops.Incr.p25"
+```
+
+Monitoring CBS write ops:
+```sh
+./expvarmon -ports="4985" -vars="cb.ops.Write(raw).count,cb.ops.Write(raw).p99,cb.ops.Write(raw).p95,cb.ops.Write(raw).p90,cb.ops.Write(raw).p75,cb.ops.Write(raw).p50,cb.ops.Write(raw).p25"
+```
+
+Monitoring CBS CAS ops:
+```sh
+./expvarmon -ports="4985" -vars="cb.ops.casNext.count,cb.ops.casNext.p99,cb.ops.casNext.p95,cb.ops.casNext.p90,cb.ops.casNext.p75,cb.ops.casNext.p50,cb.ops.casNext.p25"
+```
+
+Monitoring CBS pools stats [Doesn't currently work due to bug]:
+```sh
+#./expvarmon -ports="4985" -vars="cb.ops.pools.count,cb.ops.pools.p99,cb.ops.pools.p95,cb.ops.pools.p90,cb.ops.pools.p75,cb.ops.pools.p50,cb.ops.pools.p25"
+```
+
+Monitoring Memcached stats:
+```sh
+./expvarmon -ports="4985" -vars="mc.recv.errs,mem:mc.recv.bytes.GET,mem:mc.recv.bytes.SET,mem:mc.recv.bytes.INCREMENT,mem:mc.recv.bytes.ADD,mem:mc.recv.bytes.total"
+```
+
+Monitoring SG change cache stats:
+```sh
+./expvarmon -ports="4985" -vars="syncGateway_changeCache.view_queries,syncGateway_changeCache.lag-total-0000ms"
+```
+
+Monitoring SG db stats:
+```sh
+./expvarmon -ports="4985" -vars="syncGateway_db.channelChangesFeeds,syncGateway_db.document_gets,syncGateway_db.revisionCache_adds,syncGateway_db.revs_added,syncGateway_db.sequence_gets,syncGateway_db.sequence_reserves"
+```
+
+Monitoring SG listener stats:
+```sh
+./expvarmon -ports="4985" -vars="syncGateway_httpListener.max_active,syncGateway_httpListener.max_wait"
+```
+
+Monitoring SG REST API stats:
+```sh
+./expvarmon -ports="4985" -vars="syncGateway_rest.changesFeeds_active,syncGateway_rest.changesFeeds_total,syncGateway_rest.requests_active,syncGateway_rest.requests_total,syncGateway_rest.requests_0000ms,syncGateway_rest.requests_0100ms,syncGateway_rest.requests_0600ms"
+```
+
+
+##Things you want to do, but currently cant:
+**Cannot group expvars into panels (or especially named panels)**
+  Would be nice to be able to group panels like this:
+   ```sh
+    ./expvarmon -vars="foo,bar"  -vars="fizz,buzz"
+   ```
+   or even
+   ```sh
+    ./expvarmon -vars="These:foo,bar"  -vars="Others:fizz,buzz"
+   ```
+**Cannot support paths like `cb.ops.pools.127.0.0.1:11210.count`**
+
+**Cannot use globs like `cb.ops.*`**
+
+
+# ExpvarMon
 
 TermUI based Go apps monitor using [expvars](http://golang.org/pkg/expvar/) variables (/debug/vars). Quickest way to monitor your Go app.
 
