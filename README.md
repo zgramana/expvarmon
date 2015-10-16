@@ -1,4 +1,9 @@
+# Installation
+
+For OSX, just [download the binary](https://github.com/zgramana/expvarmon/releases/download/0.1/expvarmon).
+
 # Sync Gateway Usage Guide
+
 Monitoring memory stats:
 ```sh
 ./expvarmon -ports="4985" -vars="mem:memstats.Alloc,mem:memstats.Sys,mem:memstats.HeapAlloc,mem:memstats.HeapInuse,memstats.NumGC,memstats.PauseTotalNs,memstats.PauseNs"
