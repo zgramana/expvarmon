@@ -1,6 +1,6 @@
 # Installation
 
-For OSX, just [download the binary](https://github.com/zgramana/expvarmon/releases/download/0.1/expvarmon).
+For OSX and Windows (64-bit only), just [download the binary](https://github.com/zgramana/expvarmon/releases/download/0.1/expvarmon).
 
 # Sync Gateway Usage Guide
 
