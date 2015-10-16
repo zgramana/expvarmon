@@ -12,7 +12,7 @@ import (
 )
 
 // ExpvarsUrl is the default url for fetching expvar info.
-const ExpvarsPath = "/debug/vars"
+const ExpvarsPath = "/_expvar"
 
 // Expvar represents fetched expvar variable.
 type Expvar struct {
